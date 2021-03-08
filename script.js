@@ -5,7 +5,7 @@ document.querySelector("#tbnGif").addEventListener("click", findGiphy);
 var input = document.getElementById("inputText").value;
 
 function findMovies() {
-    let url = new URL("http://www.omdbapi.com/?apikey=5ecf8ce8");
+    let url = new URL("https://www.omdbapi.com/?apikey=5ecf8ce8");
     url.searchParams.append("s", input)
 
     fetch(url)
