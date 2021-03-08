@@ -2,7 +2,7 @@ document.querySelector("#btnMov").addEventListener("click", findMovies);
 
 document.querySelector("#tbnGif").addEventListener("click", findGiphy);
 
-let input = document.getElementById("inputText").value;
+var input = document.getElementById("inputText").value;
 
 function findMovies() {
     let url = new URL("http://www.omdbapi.com/?apikey=5ecf8ce8");
