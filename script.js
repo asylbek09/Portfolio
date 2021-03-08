@@ -1,12 +1,14 @@
 document.querySelector("#btnMov").addEventListener("click", findMovies);
 
-document.querySelector("#tbnGif").addEventListener("click", findGiphy);
+document.querySelector("#btnGif").addEventListener("click", findGiphy);
+
+document.querySelector("#btnRmv").addEventListener("click", removeData);
 
 var input = document.getElementById("inputText").value;
 
 function findMovies() {
-    let url = new URL("https://www.omdbapi.com/?apikey=5ecf8ce8");
-    url.searchParams.append("s", input)
+    let url = new URL("http://www.omdbapi.com/?apikey=5ecf8ce8");
+    url.searchParams.append("s", input);
 
     fetch(url)
         .then(function (promise) {
@@ -19,13 +21,22 @@ function findMovies() {
 }
 
 function findGiphy() {
-   
+    let url = new URL("http://api.giphy.com/v1/gifs/search?api_key=zrSuvQLz2zVVb905eX5X94azH9HKU7dn&limit=20");
+    url.searchParams.append("string", input);
+
+    fetch(url)
+        .then(function (promise) {
+            return promise.json();
+        })
+        .then((data) => {
+            console.log(data);
+        })
 }
 
+
+const resultsDiv = document.querySelector("#results");
+    
 function displayData(data) {
-
-    const resultsDiv = document.querySelector("#results");
-
     for (let i = 0; i < data.length; i++) {
         const movieName = document.createElement("p");
         movieName.innerHTML = `Title: ${data[i].Title}`;
@@ -39,4 +50,8 @@ function displayData(data) {
         moviePoster.src = data[i].Poster;
         resultsDiv.appendChild(moviePoster);
     };
+}
+
+function removeData() {
+    resultsDiv.innerHTML = "";
 }
